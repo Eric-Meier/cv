@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: EJMeier_CV.pdf
-          path: cv.pdf
+          path: CV.pdf
       
       - name: Create Release
         id: create_release
@@ -65,6 +65,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: cv.pdf
+          asset_path: CV.pdf
           asset_name: EJMeier_CV.pdf
           asset_content_type: application/pdf
