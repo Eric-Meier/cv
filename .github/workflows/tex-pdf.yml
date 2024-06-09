@@ -17,7 +17,8 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    permissions: write-all
+    permissions: 
+      contents: write
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -29,10 +30,10 @@ jobs:
       - name: LaTeX compilation
         # You may pin to the exact commit or the version.
         # uses: dante-ev/latex-action@49cf7cb5f79e7b2006dbdffea85e02bec0b6244b
-        uses: dante-ev/latex-action@2021-A
+        uses: xu-cheng/latex-action@v2
         with:
           # The root LaTeX file to be compiled
-          root_file: cv.tex
+          root_file: EJMeier_CV.tex
           # The working directory for the latex compiler to be invoked
           # working_directory: # optional
           # LaTeX engine to be used
@@ -41,41 +42,14 @@ jobs:
           # args: # optional, default is -pdf -latexoption=-file-line-error -latexoption=-interaction=nonstopmode
           # Install extra packages by apt-get
           # extra_system_packages: # optional         
-      
-      # - name: Upload a Build Artifact
-      #   uses: actions/upload-artifact@v4.3.3
-      #   with:
-      #     name: EJMeier_CV.pdf
-      #     path: CV.pdf
-            
-      # - name: Create Release
-      #   id: create_release
-      #   uses: ncipollo/release-action@v1.14.0
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: v0.1-${{ github.run_number }}
-      #     release_name: Automated build v0.1-${{ github.run_number }}
-      #     draft: false
-      #     prerelease: false
-      # - name: Upload Release Asset
-      #   id: upload-release-asset 
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} 
-      #     asset_path: CV.pdf
-      #     asset_name: EJMeier_CV.pdf
-      #     asset_content_type: application/pdf
           
       - name: Release
         uses: softprops/action-gh-release@v2
         # if: startsWith(github.ref, 'refs/tags/')
         with:
+          name: Automated Build v0.1-${{ github.run_number }}
           tag_name: v0.1-${{ github.run_number }}
-          # release_name: Automated build v0.1-${{ github.run_number }}
           draft: false
           prerelease: false
-          files: CV.pdf
-          # name: EJMeier_CV.pdf
+          files: EJMeier_CV.pdf
+
