@@ -42,29 +42,40 @@ jobs:
           # Install extra packages by apt-get
           # extra_system_packages: # optional         
       
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.3.3
-        with:
-          name: EJMeier_CV.pdf
-          path: CV.pdf
-      
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Upload a Build Artifact
+      #   uses: actions/upload-artifact@v4.3.3
+      #   with:
+      #     name: EJMeier_CV.pdf
+      #     path: CV.pdf
+            
+      # - name: Create Release
+      #   id: create_release
+      #   uses: ncipollo/release-action@v1.14.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: v0.1-${{ github.run_number }}
+      #     release_name: Automated build v0.1-${{ github.run_number }}
+      #     draft: false
+      #     prerelease: false
+      # - name: Upload Release Asset
+      #   id: upload-release-asset 
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }} 
+      #     asset_path: CV.pdf
+      #     asset_name: EJMeier_CV.pdf
+      #     asset_content_type: application/pdf
+          
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        # if: startsWith(github.ref, 'refs/tags/')
         with:
           tag_name: v0.1-${{ github.run_number }}
           release_name: Automated build v0.1-${{ github.run_number }}
           draft: false
           prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: CV.pdf
-          asset_name: EJMeier_CV.pdf
-          asset_content_type: application/pdf
+          files: cv.pdf
+          name: EJMeier_CV.pdf
