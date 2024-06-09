@@ -74,8 +74,8 @@ jobs:
         # if: startsWith(github.ref, 'refs/tags/')
         with:
           tag_name: v0.1-${{ github.run_number }}
-          release_name: Automated build v0.1-${{ github.run_number }}
+          # release_name: Automated build v0.1-${{ github.run_number }}
           draft: false
           prerelease: false
-          files: cv.pdf
+          files: CV.pdf
           name: EJMeier_CV.pdf
