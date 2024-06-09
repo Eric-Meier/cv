@@ -78,4 +78,4 @@ jobs:
           draft: false
           prerelease: false
           files: CV.pdf
-          name: EJMeier_CV.pdf
+          # name: EJMeier_CV.pdf
