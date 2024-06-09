@@ -47,8 +47,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         # if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: Automated Build v0.1-${{ github.run_number }}
-          tag_name: v0.1-${{ github.run_number }}
+          name: Automated Build v1.0.${{ github.run_number }}
+          tag_name: v1.0.${{ github.run_number }}
           draft: false
           prerelease: false
           files: EJMeier_CV.pdf
