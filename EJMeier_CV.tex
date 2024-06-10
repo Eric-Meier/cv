@@ -15,7 +15,7 @@
 \newcommand*{\paper}[4]{\textit{#1}\newline #2. \newline\href{#3}{\textcolor{blue}{#4}}}
 \newcommand*{\blink}[2]{\textit{\href{#1}{\textcolor{blue}{#2}}}}
 
-
+\fancyfoot[L]{\textcolor{gray}{\today}}
 
 \firstname{Eric J.}
 \familyname{Meier, Ph.D.\vspace*{12pt}}
@@ -26,11 +26,14 @@
 \phone{(505) 665-6537}
 %\fax{(000) 111 1113}
 \email{ejmeier@lanl.gov}
-%\homepage{publish.illinois.edu/gadwaylab/}
+\homepage{ericjmeier.com}
 %\extrainfo{2510 A S Vine St. Urbana, IL 61801}
-%\photo[70pt][0.4pt]{eric.pdf}
+% \photo[70pt][0.4pt]{./assets/imgs/photo_Meier_Eric.jpg}
 %\quote{"A witty and playful quotation" - John Smith}
-
+\patchcmd{\makehead}% <cmd>
+  {\\[2.5em]}% <search>
+  {\hfill\raisebox{-1.4cm}[0pt][0pt]{\includegraphics[width=.18\textwidth]{./assets/imgs/photo_Meier_Eric.jpg}}\\[2.5em]}% <replace>
+  {}{}% <success><failure>
 %----------------------------------------------------------------------------------------
 
 \begin{document}
