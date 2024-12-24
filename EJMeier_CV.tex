@@ -1,27 +1,54 @@
 \documentclass[12pt,letterpaper,sans]{moderncv}
 
-\moderncvstyle{banking}
 \moderncvcolor{blue}
-\renewcommand{\familydefault}{\sfdefault}
+\moderncvstyle[]{banking}
 
-\usepackage[utf8]{inputenc}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand*{\subsectionfont}{\large\upshape\fontseries{b}\selectfont}
 
 \usepackage[leftmargin=22pt]{etaremune}
 \usepackage{lipsum}
 \usepackage[margin = 1in]{geometry}
 \usepackage[none]{hyphenat}
+\usepackage{xspace}
 
+% font loading
+% for luatex and xetex, do not use inputenc and fontenc
+% see https://tex.stackexchange.com/a/496643
+\ifxetexorluatex
+  \usepackage{fontspec}
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+  \setmathfont{Latin Modern Math}
+
+  % you may also consider Fira Sans Light for a extra modern look
+  %\setsansfont[ItalicFont={Fira Sans Light Italic},%
+  %           BoldFont={Fira Sans},%
+  %           BoldItalicFont={Fira Sans Italic}]%
+  %           {Fira Sans Light}%
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+
+\usepackage[english]{babel}
 
 \newcommand*{\paper}[4]{\textit{#1}\newline #2. \newline\href{#3}{\textcolor{blue}{#4}}}
 \newcommand*{\blink}[2]{\textit{\href{#1}{\textcolor{blue}{#2}}}}
+\newcommand*{\headbullet}{\raisebox{0.1cm}{\tiny$\bullet$\xspace}}
+% \definecolor{mcvlightblue}{rgb}{0.22, 0.45, 0.70}
 
 \fancyfoot[L]{\textcolor{gray}{\today}}
 
-\firstname{Eric J.}
-\familyname{Meier, Ph.D.\vspace*{12pt}}
+\firstname{\textcolor{lightblue}{Eric J.}}
+\familyname{Meier, Ph.D.\texorpdfstring{\vspace*{12pt}}{}}
 %\title{CV}
 %\born{July 21, 1991}
-\address{Scientist $\bullet$ Quantum Group $\bullet$ Materials Physics and Applications Division}{Los Alamos National Laboratory $\bullet$ Los Alamos, NM 87545}
+\address{Scientist \headbullet Quantum Group \headbullet Materials Physics and Applications Division}{Los Alamos National Laboratory \headbullet Los Alamos, NM 87545}
 %\mobile{(000) 111 1111}
 \phone{(505) 665-6537}
 %\fax{(000) 111 1113}
@@ -30,39 +57,41 @@
 %\extrainfo{2510 A S Vine St. Urbana, IL 61801}
 % \photo[70pt][0.4pt]{./assets/imgs/photo_Meier_Eric.jpg}
 %\quote{"A witty and playful quotation" - John Smith}
-\patchcmd{\makehead}% <cmd>
-  {\\[2.5em]}% <search>
-  {\hfill\raisebox{-1.4cm}[0pt][0pt]{\includegraphics[width=.18\textwidth]{./assets/imgs/photo_Meier_Eric.jpg}}\\[2.5em]}% <replace>
-  {}{}% <success><failure>
+
+\social[googlescholar]{ckGWslMAAAAJ}
+\social[orcid]{0000-0003-1545-9829}
 %----------------------------------------------------------------------------------------
 
 \begin{document}
 
 
 %----------------------------------------------------------------------------------------
-%	CURRICULUM VITAE - LAST UPDATED 5/10/2023
+%     CURRICULUM VITAE - LAST UPDATED 5/10/2023
 %----------------------------------------------------------------------------------------
 
-\makecvtitle % Print the CV title
+\begin{tabular}{cc}
+  \hspace{0.35cm}\makecvtitle & \hspace{0.35cm}\raisebox{-1.1cm}[0pt][0pt]{\includegraphics{./assets/imgs/photo_Meier_Eric.png}}
+\end{tabular} % Print the CV title
+
 
 %----------------------------------------------------------------------------------------
-%	EDUCATION SECTION
+%     EDUCATION SECTION
 %----------------------------------------------------------------------------------------
 
 \section{Education}
 
-\cventry{}{\textnormal{The University of Illinois at Urbana-Champaign}}{Ph.D. physics}{2019}{}{Thesis: \blink{https://uofi.box.com/shared/static/9mzcm685c37wictkydgacejmtyhsgdg8.pdf}{Momentum-Space Lattices for Ultracold Atoms}, Advisor: Bryce Gadway}  % Arguments not required can be left empty
-\cventry{}{\textnormal{Denison University. Granville, Ohio}}{B.S. physics, cum laude}{2014}{}{Thesis: \blink{https://uofi.box.com/shared/static/cu7je3u8vpb84vf9httucgxk4whbgk1x.pdf}{Statistical Modeling of Jets in Active Galactic Nuclei}, Advisor: Dan Homan}
+\cventry{}{\textnormal{The University of Illinois at Urbana-Champaign}}{Ph.D. physics}{2019}{}{Thesis: \blink{https://drive.google.com/file/d/13jEPF7jk_JE5IHjaCI6E81MJ85Vn3phD/view}{Momentum-Space Lattices for Ultracold Atoms}, Advisor: Bryce Gadway}  % Arguments not required can be left empty
+\cventry{}{\textnormal{Denison University. Granville, Ohio}}{B.S. physics, cum laude}{2014}{}{Thesis: \blink{https://drive.google.com/file/d/11_UcZWvVsSe9qHbxiKOnjJ58nM1U9A5L/view}{Statistical Modeling of Jets in Active Galactic Nuclei}, Advisor: Dan Homan}
 
 %----------------------------------------------------------------------------------------
-%	WORK EXPERIENCE SECTION
+%     WORK EXPERIENCE SECTION
 %----------------------------------------------------------------------------------------
 
 \section{Research}
 
 \subsection{Professional}
 
-\cventry{}{\textnormal{Los Alamos National Laboratory}}{Scientist, Quantum Group, MPA}{2023--Present}{}{I work on a myriad of projects in quantum information science using experimental atomic physics.}
+\cventry{}{\textnormal{Los Alamos National Laboratory}}{Scientist, Quantum Group, MPA}{2023--Present}{}{I work on a myriad of projects in quantum information science using experimental atomic and optical physics.}
 
 \subsection{Postdoctoral}
 
@@ -83,7 +112,7 @@
 \cventry{}{\textnormal{Denison University. Granville, Ohio}}{Researcher, Advisor: Dan Homan}{2012--2014}{}{I wrote computer simulations of relativistic extragalactic jets in an effort to match typical observed acceleration profiles found in the MOJAVE program database.}
 
 %----------------------------------------------------------------------------------------
-%	Skills
+%     Skills
 %----------------------------------------------------------------------------------------
 
 \section{Skills}
@@ -91,7 +120,7 @@
 Laser Operation, Alignment, \& Locking $\bullet$ Vacuum Chamber Assembly \& Baking $\bullet$ Laser Safety Interlock Design and Implementation $\bullet$ Experimental Optimization with Machine Learning $\bullet$ Electromagnet Design \& Control (including high-fields for Feshbach Resonances) $\bullet$ Optical Fibers/Fiber Coupling/Fiber Splicing $\bullet$ Data Analysis $\bullet$ Computer Simulation $\bullet$ Basic Electronics Design $\bullet$ Surface-Mount and Through-Hole Soldering $\bullet$ Atomic Spectroscopy Techniques (Saturated Absorption, Polarization, Modulation Transfer) $\bullet$ Resonant Atomic Imaging $\bullet$ 2D and 3D Magneto-Optical Trapping $\bullet$ Optical Pumping $\bullet$ Optical Molasses $\bullet$ Optical Dipole Trapping \& Evaporation $\bullet$ Bose--Einstein Condensation $\bullet$ Two-Species Mixtures $\bullet$ Light-Induced Atomic Desorption $\bullet$ Digital Micromirror Devices \& Spatial Light Modulators $\bullet$ Active Optical Elements (Tapered Amplifiers, Acousto- and Electro-Optic Modulators, Shutters, Raman Fiber Amplifiers) $\bullet$ Radio-Frequency Source Design and Implementation $\bullet$ Optical Cavity Laser Locking $\bullet$ Basic Woodworking \& Machining
 
 \subsection{Computer Skills \& Languages}
-Adobe Photoshop \& Illustrator $\bullet$ Wolfram Mathematica $\bullet$ Matlab $\bullet$ Python $\bullet$ LabVIEW \& LabVIEW FPGA $\bullet$ 3D Modeling and Design in Solidworks $\bullet$ Andor Basic $\bullet$ Microsoft Office $\bullet$ Computer Assembly $\bullet$ \LaTeX $\bullet$ American Sign Language (beginner)
+Wolfram Mathematica $\bullet$ Matlab $\bullet$ Python $\bullet$ HTML $\bullet$ C\texttt{++}~(Arduino) $\bullet$ LabVIEW \& LabVIEW FPGA $\bullet$ Adobe Photoshop \& Illustrator $\bullet$ 3D Modeling and Design in Solidworks $\bullet$ Andor Basic $\bullet$ Microsoft Office $\bullet$ Computer Assembly $\bullet$ \LaTeX $\bullet$ American Sign Language (beginner)
 
 \subsection{Soft Skills}
 Flexibility $\bullet$ Effective and Clear Communication $\bullet$ Attention to Detail $\bullet$ Teamwork \& Cooperation $\bullet$ Time Management $\bullet$ Internal Motivation
@@ -100,7 +129,7 @@ Flexibility $\bullet$ Effective and Clear Communication $\bullet$ Attention to D
 
 
 %----------------------------------------------------------------------------------------
-%	Publications
+%     Publications
 %----------------------------------------------------------------------------------------
 
 \section{Publications}
@@ -135,7 +164,7 @@ Flexibility $\bullet$ Effective and Clear Communication $\bullet$ Attention to D
 \item selected as \emph{Editor's Suggestion}
 \end{itemize}
 
-\item \paper{Nondestructive dispersive imaging of rotationally excited ultracold molecules}{Qingze Guan, Michael Highman, \textbf{Eric~J.~Meier}, Garrett~R.~Williams, Vito~Scarola, Brian~DeMarco, Svetlana~Kotochigova, and Bryce~Gadway}{http://dx.doi.org/10.1039/D0CP03419C}{Physical Chemistry Chemical Physics \textbf{22}, 20531 (2020)}
+\item \paper{Nondestructive dispersive imaging of rotationally excited ultracold molecules}{Qingze Guan, Michael Highman, \textbf{Eric~J.~Meier}, Garrett~R.~Williams, Vito~Scarola,\newline Brian~DeMarco, Svetlana~Kotochigova, and Bryce~Gadway}{http://dx.doi.org/10.1039/D0CP03419C}{Physical Chemistry Chemical Physics \textbf{22}, 20531 (2020)}
 
 \item \paper{Counterdiabatic control of transport in a synthetic tight-binding lattice}{\textbf{Eric J.\ Meier}, Kinfung Ngan, Dries Sels, and Bryce Gadway}{https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.2.043201}{Physical Review Research \textbf{2}, 043201 (2020)}
 \begin{itemize}
@@ -158,7 +187,7 @@ Flexibility $\bullet$ Effective and Clear Communication $\bullet$ Attention to D
 \end{etaremune}
 
 %----------------------------------------------------------------------------------------
-%	Presentations
+%     Presentations
 %----------------------------------------------------------------------------------------
 
 \section{Presentations}
@@ -174,33 +203,33 @@ Flexibility $\bullet$ Effective and Clear Communication $\bullet$ Attention to D
 July 2023 virtual
 
 \item BEC2018X (invited)
-\newline 
-\blink{http://thetis.ph.tsukuba.ac.jp/~hatsugai/modules/pico4/workshop2018x/meie.pdf}{Quantum simulation of one-dimensional topological insulators with cold atoms}
-\newline 
+\newline
+\emph{Quantum simulation of one-dimensional topological insulators with cold atoms}
+\newline
 December 2018 at the University of Tsukuba in Tokyo, Japan
 
 \item Midwest Cold Atom Workshop 2017 (invited)
-\newline 
+\newline
 \emph{Correlated phenomena in synthetic momentum-space lattices}
-\newline 
+\newline
 November 2017 at the University of Michigan in Ann Arbor, Michigan
 
 \item DAMOP 2019, Session: ``Dynamics of Cold Atoms in Optical Lattices''
-\newline 
+\newline
 \emph{Fast eigenstate preparation in a synthetic lattice by counter-diabatic driving}
-\newline 
+\newline
 May 2019 in Milwaukee, Wisconsin
 
 \item DAMOP 2017, Session: ``New Topological Quantum Matter''
-\newline 
+\newline
 \emph{Disordered topological wires in a momentum-space lattice}
-\newline 
+\newline
 June 2017 in Sacramento, California
 
 \item DAMOP 2016, Session: ``Progress in Spin-Orbit Coupling''
-\newline 
+\newline
 \emph{Direct observation of edge states in the Su--Schrieffer--Heeger model with bosonic atoms in a momentum space lattice}
-\newline 
+\newline
 May 2016 in Providence, Rhode Island
 
 \end{etaremune}
@@ -213,7 +242,7 @@ May 2016 in Providence, Rhode Island
 \newline
 \emph{Experimental progress towards quantum control of strontium qudits}
 \newline
-June 2023 at in Spokane, Washington
+June 2023 in Spokane, Washington
 
 \item Midwest Cold Atom Workshop 2019
 \newline
@@ -260,10 +289,12 @@ November 2015 at the University of Wisconsin at Madison
 \end{etaremune}
 
 %----------------------------------------------------------------------------------------
-%	AWARDS SECTION
+%     AWARDS SECTION
 %----------------------------------------------------------------------------------------
 
 \section{Honors and Awards}
+
+\cvitem{2024}{SPOT Award, Los Alamos National Laboratory}
 
 \cvitem{2021}{Director's Postdoctoral Fellow, Los Alamos National Laboratory
 \small{
@@ -310,7 +341,7 @@ November 2015 at the University of Wisconsin at Madison
 \cvitem{2009}{Boy Scouts of America Eagle Scout Award. Troop 11, Kingsville, Ohio}
 
 %----------------------------------------------------------------------------------------
-%	Teaching
+%     Teaching
 %----------------------------------------------------------------------------------------
 
 \section{Teaching}
@@ -328,9 +359,7 @@ November 2015 at the University of Wisconsin at Madison
 \item Ranked `Excellent Teacher' based on student evaluations
 \end{itemize}
 }
-
 \subsection{Undergraduate}
-
 \cventry{}{\textnormal{Denison University. Granville, Ohio}}{Laboratory Teaching Assistant, Introductory Astronomy}{2013--2014}{}{In addition to teaching students how to use reflecting and refracting telescopes and aiding them in their observations, I was in charge of telescope assembly, disassembly, and storage.}
 
 \cventry{}{\textnormal{Denison University. Granville, Ohio}}{Laboratory Teaching Assistant, Introductory Physics}{2012--2014}{}{Working in conjunction with the course's professor, I facilitated students in performing their experiments.}
@@ -340,18 +369,3 @@ November 2015 at the University of Wisconsin at Madison
 
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
